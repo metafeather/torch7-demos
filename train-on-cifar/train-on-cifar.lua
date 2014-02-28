@@ -140,7 +140,7 @@ end
 -- download dataset
 if not paths.dirp('cifar-10-batches-t7') then
    local www = 'http://data.neuflow.org/data/cifar-10-torch.tar.gz'
-   local tar = sys.basename(www)
+   local tar = paths.basename(www)
    os.execute('wget ' .. www .. '; '.. 'tar xvf ' .. tar)
 end
 
@@ -365,7 +365,7 @@ function train(dataset)
    -- save/log current net
    local filename = paths.concat(opt.save, 'cifar.net')
    os.execute('mkdir -p ' .. sys.dirname(filename))
-   if sys.filep(filename) then
+   if paths.filep(filename) then
       os.execute('mv ' .. filename .. ' ' .. filename .. '.old')
    end
    print('<trainer> saving network to '..filename)
